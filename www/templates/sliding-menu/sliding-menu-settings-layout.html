@@ -1,0 +1,111 @@
+<ion-view view-title="{{ 'settings-title-text' | translate }}">
+  <ion-content class="application-background-color">
+
+    <div class="username-area">
+      <div class="row margin-top-25 margin-bottom-25 margin-left-10 margin-right-10 border application-theme-color-white box-shadow">
+        <div class="icon ion-person placeholder-icon margin-left-10 user-icon"></div>
+          <div class="col col-80">
+           <div class="left font-size application-text-color-skyblue" translate>
+             {{settingsCtrl.username}}
+           </div>
+        </div>
+      </div>
+    </div>
+
+    <!--LANGUAGE ITEMS-->
+    <div class="margin-left-10 margin-right-10 margin-bottom-25 border box-shadow">
+      <div class="row height-4 application-theme-color-white box-shadow">
+        <div class="col col-50 padding-top-bottom-none">
+          <div class="margin-left-5 margin-top-13 font-size application-text-color-gray" translate>settings-language-text</div>
+        </div>
+        <div class="col col-40 padding-top-bottom-none">
+          <select class="language-selection-box right width-70" ng-model="settingsCtrl.selectedLanguage"
+                  ng-change="settingsCtrl.changeLanguage(settingsCtrl.selectedLanguage)">
+            <option>English</option>
+            <option>Deutsch</option>
+          </select>
+        </div>
+        <div class="col col-10">
+          <div class="image-size-1-50 arrow-image margin-top-7"></div>
+        </div>
+      </div>
+    </div>
+
+<!--CHANGE APP CODE BUTTON-->
+    <div class="margin-left-10 margin-right-10 margin-bottom-25 border box-shadow">
+      <div class="button row height-4 application-theme-color-white font-size" ng-click="settingsCtrl.changeAppCode()">
+        <div class="col col-90">
+          <div class="left margin-left-5 application-text-color-gray" translate>{{settingsCtrl.appCodeText}}</div>
+        </div>
+        <div class="col col-10">
+          <div class="image-size-1-50 arrow-image margin-top-10"></div>
+        </div>
+      </div>
+      <div class="row-area application-theme-color-white">
+        <div class="padding-left-right-bottom-10 application-text-color-gray" translate>change-app-code-details</div>
+      </div>
+    </div>
+
+<!--CLEAR CACHE BUTTON-->
+    <div class="margin-left-10 margin-right-10 margin-bottom-25 border box-shadow">
+      <div class="button row height-4 application-theme-color-white font-size" ng-click="settingsCtrl.clearCache()">
+        <div class="col col-90">
+          <div class="left margin-left-5 font-size application-text-color-gray" translate>clear-cache-button-text</div>
+        </div>
+        <div class="col col-10">
+          <div class="image-size-1-50 arrow-image margin-top-10"></div>
+        </div>
+      </div>
+      <div class="row-area application-theme-color-white">
+        <div class="padding-left-right-bottom-10 application-text-color-gray" translate>clear-cache-details-text</div>
+      </div>
+    </div>
+
+    <!--ANOTHER ACCOUNT BUTTON-->
+    <div class="margin-left-10 margin-right-10 margin-bottom-25 border box-shadow">
+      <div class="button row height-4 application-theme-color-white font-size" ng-click="settingsCtrl.anotherAccount()">
+        <div class="col col-90">
+          <div class="left margin-left-5 font-size application-text-color-gray" translate>another-account-button-text</div>
+        </div>
+        <div class="col col-10">
+          <div class="image-size-1-50 arrow-image margin-top-10"></div>
+        </div>
+      </div>
+      <div class="row-area application-theme-color-white">
+        <div class="padding-left-right-bottom-10 application-text-color-gray" translate>another-account-details-text</div>
+      </div>
+    </div>
+
+<!--DEACTIVATE SSL BUTTON-->
+    <div class="margin-left-10 margin-right-10 margin-bottom-25 border box-shadow">
+      <div class="row height-4 application-theme-color-white font-size" >
+        <div class="col col-80">
+          <div class="left margin-left-5 margin-top-10 font-size application-text-color-gray" translate>deactivate-ssl-button-text</div>
+        </div>
+        <div class="col col-20">
+          <div style="float:right" ng-class="{'image-size-1-50 checked-image': settingsCtrl.isActivateSSL==true, 'image-size-1-50 unchecked-image': settingsCtrl.isActivateSSL==false}" ng-click="settingsCtrl.DeactivateSSL()"></div>
+        </div>
+      </div>
+      <div class="row-area application-theme-color-white">
+        <div class="padding-left-right-bottom-10 application-text-color-gray" translate>deactivate-ssl-details-text</div>
+      </div>
+    </div>
+
+    <!--RESET APP BUTTON-->
+    <div class="margin-left-10 margin-right-10 margin-bottom-25 border box-shadow">
+      <div class="button row height-4 application-theme-color-white font-size" ng-click="settingsCtrl.ResetApp()">
+        <div class="col col-90">
+          <div class="left margin-left-5 font-size application-text-color-gray" translate>reset-app-button-text</div>
+        </div>
+        <div class="col col-10">
+          <div class="image-size-1-50 arrow-image margin-top-10"></div>
+        </div>
+      </div>
+      <div class="row-area application-theme-color-white">
+        <div class="padding-left-right-bottom-10 application-text-color-gray" translate>reset-app-details-text</div>
+      </div>
+    </div>
+
+
+  </ion-content>
+</ion-view>

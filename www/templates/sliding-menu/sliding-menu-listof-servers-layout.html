@@ -1,0 +1,49 @@
+<ion-view view-title="{{ 'server-title-text' | translate }}">
+  <ion-nav-buttons side="right">
+    <div class="button button-filter button-icon icon padding-left-right-0" ng-click="allServerCtrl.popover.show($event)">
+        <div class="filter-image image-size-1-50 margin-right-5 filter-position" ></div>
+    </div>
+  </ion-nav-buttons>
+
+  <ion-content class="application-background-color">
+
+    <div class="margin-top-25"></div>
+
+    <!--LIST OF SERVERS-->
+    <ion-list>
+      <ion-item class="custom-list-item application-background-color margin-bottom-5" ng-repeat="datacenter in allServerCtrl.datacenters  | filter: allServerCtrl.filterByLocation | filter: allServerCtrl.filterByDatacenter">
+
+        <div class="row application-theme-color">
+         <!-- ng-click="allServerCtrl.EnterDatacenter(datacenter.id, datacenter.properties.name)" -->
+          <div class="col col-10">
+            <div class="menu-icon-1-image image-size-2"> </div>
+          </div>
+          <div class="col col-90">
+            <div class="application-text-color-white margin-top-7"><b>{{ datacenter.properties.name }}</b> </div>
+          </div>
+          <!-- <div class="col col-10 col-offset-20">
+            <div class="arrow-image image-size-1 margin-top-bottom-15"> </div>
+          </div> -->
+        </div>
+        
+        <ion-list>
+          <ion-item class="custom-list-item application-background-color margin-bottom-25 box-shadow" ng-repeat="server in allServerCtrl.filteredServer = (datacenter.servers | filter: allServerCtrl.filteByOnlineOffline | filter: { properties: { name: allServerCtrl.searchTextofServersFilter }} | orderBy: 'properties.name')">
+
+            <div class="row application-theme-color-white" ng-click="allServerCtrl.EnterSingleServer(server.id, server.properties.name, datacenter.id, datacenter.properties.name)">
+              <div class="col col-80">
+                <div class="margin-top-bottom-13 application-text-color-gray font-size">{{ server.properties.name }}</div>
+              </div>
+              <div class="col col-10 ">
+                <div ng-class=" { 'margin-top-15  image-size-1 offline-icon':server.properties.vmState=='SHUTOFF', 'margin-top-15 image-size-1 online-icon':server.properties.vmState=='RUNNING' }"></div>
+              </div>
+              <div class="arrow-image image-size-1 margin-top-bottom-20"> </div>
+            </div>
+
+          </ion-item>
+        </ion-list>
+
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>

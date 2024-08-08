@@ -1,0 +1,95 @@
+<ion-view view-title="{{ 'login-title-text' | translate }}">
+
+  <ion-content class="application-background-color">
+<!--LOGO-->
+    <div class="center">
+      <div class="company-logo company-logo-image"></div>
+    </div>
+<!--INFORMATION MESSAGE BOX-->
+    <div class="row margin-top-10">
+      <div class="col col-80 col-offset-10 row-top-bottom-no-padding">
+        <!--INFO BUTTON-->
+        <div class="info-box-for-click right" ng-click="FSCreds.ShowOrHideInformationDiv()">
+          <a class="image-size-1-50 information-blue-image right"></a>
+        </div>
+
+        <div class="row row-top-no-padding">
+          <div class="col info-msg-show ng-hide" ng-hide="FSCreds.showInfoInLoginCredentials">
+            <div class="row">
+              <div class="col col-20 ">
+                <div class="warning-blue-image image-size-2"> </div>
+              </div>
+              <div class="col col-80 " translate>
+                information-message-in-login-credential-text
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--ERROR MESSAGE BOX-->
+    <div class="row" >
+      <div class="col col-80 col-offset-10 row-top-bottom-no-padding">
+        <div class="error-msg-show ng-hide" id="errorContainer" ng-hide="FSCreds.showError" >
+          <div class="row">
+            <div class="col col-20 ">
+              <div class="warning-image image-size-2"> </div>
+            </div>
+            <div class="col col-80 ">
+              {{ FSCreds.errorMessage }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--USER NAME-->
+    <div class="row">
+      <div class="col col-80 col-offset-10">
+        <label class="item item-input input-username-credentails-layout">
+          <i class="icon ion-person placeholder-icon"></i>
+          <input type="text" id="userName" ng-enter="usernameEntered()" placeholder="{{ 'username-input-text' | translate }}" ng-model="FSCreds.username">
+        </label>
+      </div>
+      <div class="col col-10"></div>
+    </div>
+
+<!--PASSWORD-->
+    <div class="row">
+      <div class="col col-80 col-offset-10">
+        <label class="item item-input input-password-credentails-layout">
+          <i class="icon ion-locked placeholder-icon"></i>
+          <input type="{{FSCreds.inputType}}" id="userPassword" ng-enter="passwordEntered()" focus-on="usernameEnterFinished" placeholder="{{ 'password-input-text' | translate }}" ng-model="FSCreds.password">
+        </label>
+      </div>
+      <div class="col col-10 custom-list-item" ng-click="FSCreds.HideShowPassword()">
+          <div ng-class="{'image-size-1-50 eye-blue-image left margin-top-15': FSCreds.isPassword==true,'image-size-1-50 eye-gray-image left margin-top-15': FSCreds.isPassword==false}"></div>
+      </div>
+    </div>
+
+<!--SAVE CREDENTIALS CHECK BOX-->
+    <div class="row margin-top-bottom-4" >
+      <div class="col col-10 col-offset-10">
+        <div ng-class="{'margin-top-2-07 image-size-1 checked-image': FSCreds.saveCredentials==true, 'margin-top-2-07 image-size-1 unchecked-image': FSCreds.saveCredentials==false}"
+           ng-click="FSCreds.ChangeSaveCridentials()"></div>
+      </div>
+      <div class="col col-70">
+        <span class="application-text-color-skyblue" translate>save-credentials-label-text</span>
+      </div>
+      <div class="col col-10"></div>
+    </div>
+
+<!--LOGIN BUTTON-->
+    <div class="row">
+      <div class="col col-80 col-offset-10">
+        <a class="button button-allwide" ng-click="FSCreds.Login()"
+           ng-disabled="FSCreds.AreCredentialsEmpty()" translate>
+          login-button-text
+        </a>
+      </div>
+      <div class="col col-10"></div>
+    </div>
+
+  </ion-content>
+</ion-view>

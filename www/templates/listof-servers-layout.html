@@ -1,0 +1,63 @@
+<ion-view view-title="{{ 'server-title-text' | translate }}">
+   <ion-nav-buttons side="right">
+    <div class="button button-filter button-icon icon padding-left-right-0" ng-click="dashServersCtrl.popover.show($event)">
+        <div class="filter-image image-size-1-50 margin-right-5 filter-position" ></div>
+    </div>
+  </ion-nav-buttons>
+
+  <ion-content class="application-background-color">
+    <div class="row height-3-03 margin-bottom-25 application-theme-color-white box-shadow width100">
+      <div class="col col-10">
+        <div class="datacenter-image image-size-2 right"></div>
+      </div>
+      <div class="col col-90 ">
+        <div class="left application-text-color-gray margin-top-5 font-size">{{dashServersCtrl.datacenterName}} </div>
+      </div>
+    </div>
+
+    <ion-list>
+      <ion-item class="custom-list-item application-text-color-white margin-bottom-25 box-shadow" ng-repeat="server in dashServersCtrl.filteredServer = (dashServersCtrl.servers | filter: dashServersCtrl.filteByOnlineOffline | filter: { properties: { name: dashServersCtrl.searchTextofServersFilter }} | orderBy: 'properties.name')" >
+        <div class="row list-bar">
+          <div class="col col-80 server-name-colume font-size">
+            <div>{{ server.properties.name }}</div>
+          </div>
+          <div class="col col-20">
+            <div ng-class=" { 'margin-top-2 margin-left-40  image-size-1 offline-icon':server.properties.vmState=='SHUTOFF', 'margin-top-2 margin-left-40  image-size-1 online-icon':server.properties.vmState=='RUNNING' }"></div>
+          </div>
+        </div>
+        <div class="row margin-top-bottom-15" ng-click="dashServersCtrl.EnterSingleServer(server.id, server.properties.name)">
+          <div class="col col-45 border-right-1 center">
+            <div class="row">
+              <div class="col">
+                <div class="core-image image-size-2-50 right"> </div>
+              </div>
+              <div class="col">
+                <div class="application-text-color-gray left margin-top-10">
+                  {{ server.properties.cores }}
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="col col-45 center">
+            <div class="row">
+              <div class="col col-40">
+                <div class="memory-image image-size-2-50 right"> </div>
+              </div>
+              <div class="col col-60">
+                <div class="application-text-color-gray left margin-top-10">
+                  {{ server.properties.ram }} MB
+                  </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col col-10">
+            <div class=" arrow-image image-size-1 margin-top-bottom-25 right"></div>
+          </div>
+
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

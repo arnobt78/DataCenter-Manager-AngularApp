@@ -1,0 +1,29 @@
+<ion-popover-view class = "application-theme-color height-filter-menu-storages fit">
+  <ion-content class = "application-theme-color">
+
+      <div class="row">
+        <label class="item item-input input-search-box-filter-menu search-field">
+          <i class="icon ion-search placeholder-icon application-text-color-white"></i>
+          <input id="filter-search" ng-model="storagesCtrl.searchTextofStoragesFilter" ng-enter="searchText()" focus-on="searchFinished" type="text" placeholder="{{ 'storage-name-serachbox-name-text' | translate }}">
+        </label>
+      </div>
+
+    <!--REFRESH-->
+    <div class="height-3 title-filter-menu row-no-padding">
+      <div class="row">
+        <div class="col col-80">
+          <div class="margin-left-5 margin-top-5" translate> <b>refresh-text</b></div>
+        </div>
+        <div class="col col-10">
+          <div class="refresh-icon image-size-1-70" ng-click="storagesCtrl.DefaultData()"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </ion-content>
+</ion-popover-view>
+

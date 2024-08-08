@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <!-- Allow requests to foo.com and foo.net -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://api.profitbricks.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' ; style-src 'self' 'unsafe-inline' ; img-src 'self' ; connect-src 'self' https://api.profitbricks.com;">
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"> -->
+
+  <title></title>
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+  <link href="css/ionic.app.css" rel="stylesheet">
+  -->
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+
+  <!-- Datacenter Application's js -->
+  <script src="js/utilities/angular-translate.min.js"></script>
+  <script src="js/utilities/angular-translate-loader-static-files.min.js"></script>
+  <script src="js/utilities/angular-sanitize.min.js"></script>
+  <script src="js/utilities/forge.min.js"></script>
+  <script src="js/utilities/localforage.js"></script>
+  <script src="js/utilities/angular-filter.min.js"></script>
+
+  <script src="js/app-js/app.js"></script>
+  <script src="js/app-js/controllers.js"></script>
+  <script src="js/app-js/services.js"></script>
+
+  <script src="js/language-and-termscondition-controller.js"></script>
+  <script src="js/login-with-credentails-controller.js"></script>
+  <script src="js/login-with-pincode-controller.js"></script>
+  <script src="js/listof-datacenters-controller.js"></script>
+  <script src="js/listof-servers-controller.js"></script>
+  <script src="js/server-controller.js"></script>
+  <script src="js/storage-controller.js"></script>
+  <script src="js/listof-storages-controller.js"></script>
+
+  <script src="js/sliding-menu/sliding-menu-for-listof-snapshots-controller.js"></script>
+  <script src="js/sliding-menu/sliding-menu-for-listof-servers-controller.js"></script>
+  <script src="js/sliding-menu/sliding-menu-for-listof-storages-controller.js"></script>
+  <script src="js/sliding-menu/sliding-menu-help-controller.js"></script>
+  <script src="js/sliding-menu/sliding-menu-settings-controller.js"></script>
+  <script src="js/sliding-menu/sliding-menu-about-controller.js"></script>
+
+</head>
+
+<body ng-app="datacenterManager">
+  <ion-pane>
+    <ion-nav-bar class="bar-balanced" align-title="center">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-nav-view></ion-nav-view>
+  </ion-pane>
+</body>
+
+</html>

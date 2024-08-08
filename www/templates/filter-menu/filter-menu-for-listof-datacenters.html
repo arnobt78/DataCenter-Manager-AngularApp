@@ -1,0 +1,55 @@
+<ion-popover-view class = "application-theme-color height-filter-menu-datacenters fit">
+  <ion-content class = "application-theme-color">
+
+    <div class="margin-right-5 margin-left-5">
+
+    <div class="row row-no-padding">
+        <label class="item item-input input-search-box-filter-menu search-field">
+          <i class="icon ion-search placeholder-icon application-text-color-white"></i>
+            <input id="filter-search" ng-model="datacenterCtrl.searchTextofDatacentersFilter" ng-enter="searchText()" focus-on="searchFinished" type="text" placeholder="{{ 'datacenter-serachbox-name-text' | translate }}">
+        </label>
+    </div>
+
+    </div>
+
+      <div class="row title-filter-menu row-no-padding">
+        <div class="margin-left-15 margin-bottom-10" translate>
+          <b> datacenter-region-text </b>
+        </div>
+      </div>
+
+    <ion-list>
+      <ion-item class="application-theme-color item-name">
+        <div ng-repeat="datacenter in datacenterCtrl.datacenters  | unique: 'properties.location'">
+          <div class="row height-3 subtitle-filter-menu">
+
+            <div class="col col-offset-10 col-60 application-text-color-drakblue margin-top-5">
+              {{ datacenter.properties.location }}
+            </div>
+
+            <div class="col col-30">
+              <div ng-class="{'sub-item-margin-filter-menu image-size-1-70 checked-filter-image  margin-left-27': datacenterCtrl.locationNameFilter.indexOf(datacenter.properties.location) !== -1, 'sub-item-margin-filter-menu image-size-1-70 unchecked-filter-image  margin-left-27': datacenterCtrl.locationNameFilter.indexOf(datacenter.properties.location) === -1}"
+                 ng-click="datacenterCtrl.locationFilterClicked(datacenter.properties.location)"></div>
+              <br/>
+            </div>
+
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <div class="height-3 title-filter-menu row-no-padding">
+
+    <div class="row">
+      <div class="col col-80">
+        <div class="margin-left-5 margin-top-5" translate> <b>refresh-text</b></div>
+      </div>
+      <div class="col col-10">
+        <div class="refresh-icon image-size-1-70" ng-click="datacenterCtrl.DefaultData()"></div>
+      </div>
+    </div>
+
+    </div>
+
+  </ion-content>
+</ion-popover-view>

@@ -1,0 +1,2 @@
+angular.module('datacenterManager.controllers', []);
+

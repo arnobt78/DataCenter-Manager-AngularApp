@@ -1,0 +1,18 @@
+
+<ion-list>
+  <ion-item ng-repeat="datacenter in snapshotCtrl.datacenters" class="padding-left-right-0 padding-top-none border-top-bottom-none application-theme-color-lightblue" >
+    <div class="row margin-bottom-5 application-list-bar-color">
+      <div class="col">
+        <div class="application-text-color-white center">
+          <b>{{ datacenter.properties.name }}</b>
+        </div>
+      </div>
+    </div>
+
+    <ion-list>
+    	<ion-item ng-repeat="volume in datacenter.volumes">
+		    <div class="application-text-color-gray" ng-click="snapshotCtrl.ShowSnapshotActionsPopup(datacenter.id, volume.id, snapshotCtrl.snapshotId)"> {{volume.properties.name}}</div>
+		</ion-item>
+	</ion-list>
+  </ion-item>
+</ion-list>

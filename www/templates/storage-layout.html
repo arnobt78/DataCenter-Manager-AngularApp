@@ -1,0 +1,182 @@
+<ion-view view-title="{{ 'single-storage-title-text' | translate }}">
+  <ion-content scroll="true" class="application-background-color">
+
+      <!--STORAGE TITLE BAR-->
+        <div class="row list-bar margin-top-25">
+          <div class="col col-80 font-size"> {{singleStorageCtrl.volumeName}} </div>
+          <div class="col col-offset-10 col-10 right">
+            <div class="image-size-1-50 connected-image" ng-if="singleStorageCtrl.checkIfConnected(singleStorageCtrl.volumeId)"></div>
+            <div class="image-size-1-50 disconnected-image" ng-if="!singleStorageCtrl.checkIfConnected(singleStorageCtrl.volumeId)"></div>
+        </div>
+      </div>
+
+      <!--STORAGE INFO-->
+      <div class="row application-theme-color-lightblue box-shadow">
+        <div class="row height-4 margin-top-bottom-15">
+          <div class="col border-right-1">
+            <div class="row">
+              <div class="col col-40">
+                <div class="memory-image image-size-2 right"></div>
+              </div>
+              <div class="col col-60 application-text-color-gray ">
+                <div class="application-text-color-gray center margin-top-5 left">{{ singleStorageCtrl.singleVolume.properties.size }} GB
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col border-right-1">
+            <div class="application-text-color-gray center margin-top-15">{{ singleStorageCtrl.singleVolume.properties.bus }}</div>
+          </div>
+          <div class="col">
+            <div class="germanflag-image image-size-2 margin-top-5" ng-if=" singleStorageCtrl.datacenterLocation == 'Karlsruhe' || singleStorageCtrl.datacenterLocation == 'Frankfurt'"> </div>
+            <div class="usaflag-image image-size-2 margin-top-5" ng-if="singleStorageCtrl.datacenterLocation == 'Las Vegas'"> </div>
+          </div>
+        </div>
+      </div>
+
+     <!--BUTTONS-->
+      <div class="padding-top-bottom-25 application-theme-color-white">
+        <!--CREATE SNAPSHOT BUTTON -->
+        <div class="height-4 imagebutton-div" ng-click="singleStorageCtrl.CreateSnapshot()">
+          <div class="row">
+              <div class="col col-offset-20 col-10">
+                <div class="menu-icon-4-image image-size-2 margin-top-5 "> </div>
+              </div>
+              <div class="col col-offset-10 col-60">
+                <div class="left  margin-top-10" translate>create-snapshot-text</div>
+              </div>
+          </div>
+        </div>
+
+        <!--RESTORE SNAPSHOT BUTTON -->
+        <!--<div class=" height-4 margin-top-25 imagebutton-div" ng-click="singleStorageCtrl.SnapshotList()">-->
+          <!--<div class="row">-->
+              <!--<div class="col col-offset-20 col-10">-->
+                <!--<div class="restore-snapshot-image image-size-2 margin-top-5 "> </div>-->
+              <!--</div>-->
+              <!--<div class="col col-offset-10 col-60 ">-->
+                <!--<div class="left margin-top-10" translate>restore-snapshot-storage-text</div>-->
+              <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <!--ATTACH SNAPSHOT BUTTON -->
+        <div class=" height-4 margin-top-25  imagebutton-div" ng-if="!singleStorageCtrl.checkIfConnected(singleStorageCtrl.volumeId)" ng-click="singleStorageCtrl.AttachVolume()">
+          <div class="row">
+              <div class="col col-offset-20 col-10">
+                <div class="attach-image image-size-2 margin-top-5 "> </div>
+              </div>
+              <div class="col col-offset-10 col-60 ">
+                <div class="left margin-top-10" translate>attach-storage-text</div>
+              </div>
+          </div>
+        </div>
+
+        <!--DETACH SNAPSHOT BUTTON -->
+        <div class=" height-4  margin-top-25  imagebutton-div" ng-if="singleStorageCtrl.checkIfConnected(singleStorageCtrl.volumeId)" ng-click="singleStorageCtrl.DetachVolume()">
+          <div class="row">
+              <div class="col col-offset-20 col-10">
+                <div class="detach-image image-size-2 margin-top-5 "> </div>
+              </div>
+              <div class="col col-offset-10 col-60 ">
+                <div class="left margin-top-10" translate>detach-storage-text</div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!--HOTPLUGGING TEXT-->
+      <div class="row application-theme-color-lightblue margin-bottom-5 box-shadow">
+        <div class="col col-55 margin-top-3">
+          <div class="right application-text-color-gray font-size" translate>hotplugging-text</div>
+        </div>
+        <div class="col col-10">
+          <div class="hotplugging-image image-size-2 margin-left-5 left"> </div>
+        </div>
+      </div>
+
+      <!--ITEMS OF HOT PLUGGINS-->
+      <div class="application-theme-color-lightblue box-shadow margin-bottom-25">
+        <!--CPU-->
+        <div class="row application-theme-color-lightblue">
+          <div class="col col-45">
+            <div class="right margin-right-10 application-text-color-gray" translate> CPU </div>
+          </div>
+          <div class="col col-10">
+            <div ng-class="{'margin-top-2 image-size-1 online-icon': singleStorageCtrl.singleVolume.properties.cpuHotPlug == true, 'margin-top-2 image-size-1 offline-icon': singleStorageCtrl.singleVolume.properties.cpuHotPlug == false}"></div>
+          </div>
+          <div class="col col-10">
+            <div ng-class="{'margin-top-2 image-size-1 online-icon': singleStorageCtrl.singleVolume.properties.cpuHotUnplug == true, 'margin-top-2 image-size-1 online-faded-icon': singleStorageCtrl.singleVolume.properties.cpuHotUnplug == false}"></div>
+          </div>
+        </div>
+        <!--RAM-->
+        <div class="row application-theme-color-lightblue">
+          <div class="col col-45">
+            <div class="right margin-right-10 application-text-color-gray" translate> RAM </div>
+          </div>
+          <div class="col col-10">
+            <div ng-class="{'margin-top-2 image-size-1 online-icon': singleStorageCtrl.singleVolume.properties.ramHotPlug == true, 'margin-top-2 image-size-1 offline-icon': singleStorageCtrl.singleVolume.properties.ramHotPlug == false}"></div>
+          </div>
+          <div class="col col-10">
+            <div ng-class="{'margin-top-2 image-size-1 online-icon': singleStorageCtrl.singleVolume.properties.ramHotUnplug == true, 'margin-top-2 image-size-1 online-faded-icon': singleStorageCtrl.singleVolume.properties.ramHotUnplug == false}"></div>
+          </div>
+        </div>
+        <!--NET-->
+        <div class="row application-theme-color-lightblue">
+          <div class="col col-45">
+            <div class="right margin-right-10 application-text-color-gray" translate> NET </div>
+          </div>
+          <div class="col col-10">
+            <div ng-class="{'margin-top-2 image-size-1 online-icon': singleStorageCtrl.singleVolume.properties.nicHotPlug == true, 'margin-top-2 image-size-1 offline-icon': singleStorageCtrl.singleVolume.properties.nicHotPlug == false}"></div>
+          </div>
+          <div class="col col-10">
+            <div ng-class="{'margin-top-2 image-size-1 online-icon': singleStorageCtrl.singleVolume.properties.nicHotUnplug == true, 'margin-top-2 image-size-1 offline-icon': singleStorageCtrl.singleVolume.properties.nicHotUnplug == false}"></div>
+          </div>
+        </div>
+        <!--HDD-->
+        <div class="row application-theme-color-lightblue">
+          <div class="col col-45">
+            <div class="right margin-right-10 application-text-color-gray" translate> HDD </div>
+          </div>
+          <div class="col col-10">
+            <div ng-class="{'margin-top-2 image-size-1 online-icon': singleStorageCtrl.singleVolume.properties.discHotPlug == true, 'margin-top-2 image-size-1 offline-icon': singleStorageCtrl.singleVolume.properties.discHotPlug == false}"></div>
+          </div>
+          <div class="col col-10">
+            <div ng-class="{'margin-top-2 image-size-1 online-icon': singleStorageCtrl.singleVolume.properties.discHotUnplug == true, 'margin-top-2 image-size-1 offline-icon': singleStorageCtrl.singleVolume.properties.discHotUnplug == false}"></div>
+          </div>
+        </div>
+      </div>
+
+      <!--CONNECTED TEXT-->
+      <div class="row height-3 margin-top-25 application-theme-color-lightblue margin-bottom-5 box-shadow">
+         <div class="col">
+           <div class="center application-text-color-gray font-size" translate>volume-location-text</div>
+         </div>
+      </div>
+
+      <!--PATH-->
+      <div class="box-shadow application-theme-color-white margin-bottom-25">
+        <div class="row height-3 ">
+          <div class="col col-10">
+            <div class="datacenter-image image-size-2 right"></div>
+          </div>
+          <div class="col col-90">
+              <div class="left application-text-color-gray margin-top-5"><b>{{singleStorageCtrl.datacenterName}}</b></div>
+          </div>
+        </div>
+        <div class="row height-3" ng-show="singleStorageCtrl.serverName != ''">
+          <div class="col col-10">
+            <div class="server-image image-size-2 right"></div>
+          </div>
+          <div class="col col-90">
+          <div class="left application-text-color-gray margin-top-5"><b>{{singleStorageCtrl.serverName}}</b></div>
+            </div>
+        </div>
+      </div>
+
+        <div class="margin-bottom-25"></div>
+
+    </div>
+  </ion-content>
+</ion-view>

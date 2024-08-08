@@ -1,0 +1,107 @@
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-menu-content drag-content="true">
+    <ion-nav-bar class="bar-balanced">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+    </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="left">
+    <!--LOGO-->
+    <ion-header-bar class="menu-header-area">
+      <div class="company-logo-image menu-bar-image"></div>
+    </ion-header-bar>
+    <ion-content class="application-theme-color">
+      <!--MENU LIST-->
+      <ion-list>
+        <ion-item class="item-menu" menu-close ng-href="#/app/datacenters">
+          <div class="row">
+            <div class="col col-20 col-offset-20">
+              <div class="menu-icon-1-image image-size-1-50 menu-attribute-image"> </div>
+            </div>
+            <div class="col col-80" >
+            <div class="left menu-attribute-name" translate>menu-datacenter-title-text</div>
+              </div>
+          </div>
+        </ion-item>
+        <ion-item class="item-menu" menu-close ng-href="#/app/allServers">
+          <div class="row">
+            <div class="col col-20 col-offset-20">
+              <div class="menu-icon-2-image image-size-1-50 menu-attribute-image"> </div>
+            </div>
+            <div class="col col-80" >
+              <div class="left menu-attribute-name" translate>menu-server-title-text</div>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item class="item-menu" menu-close ng-href="#/app/allStorages">
+          <div class="row">
+            <div class="col col-20 col-offset-20">
+              <div class="menu-icon-3-image image-size-1-50 menu-attribute-image"> </div>
+            </div>
+            <div class="col col-80" >
+              <div class="left menu-attribute-name" translate>menu-storage-title-text</div>
+            </div>
+          </div>
+
+        </ion-item>
+        <ion-item class="item-menu" menu-close ng-href="#/app/snapshots">
+          <div class="row">
+            <div class="col col-20 col-offset-20">
+              <div class="menu-icon-4-image image-size-1-50 menu-attribute-image"> </div>
+            </div>
+            <div class="col col-80" >
+
+            <div class="left menu-attribute-name" translate>menu-snapshot-title-text</div>
+              </div>
+          </div>
+
+        </ion-item>
+        <ion-item class="item-menu" menu-close ng-href="#/app/settings">
+
+          <div class="row">
+            <div class="col col-20 col-offset-20">
+              <div class="menu-icon-5-image image-size-1-50 menu-attribute-image"> </div>
+            </div>
+            <div class="col col-80" >
+            <div class=" left menu-attribute-name" translate>menu-settings-title-text</div>
+              </div>
+          </div>
+
+        </ion-item>
+        <ion-item class="item-menu" menu-close ng-href="#/app/about">
+          <div class="row">
+            <div class="col col-20 col-offset-20">
+              <div class="menu-icon-6-image image-size-1-50 menu-attribute-image"> </div>
+            </div>
+            <div class="col col-80" >
+
+            <div class="left menu-attribute-name" translate>menu-about-title-text</div>
+              </div>
+          </div>
+
+        </ion-item>
+        <ion-item class="item-menu" menu-close ng-href="#/app/help">
+
+          <div class="row">
+            <div class="col col-20 col-offset-20">
+              <div class="menu-icon-7-image image-size-1-50 menu-attribute-image"> </div>
+            </div>
+            <div class="col col-80" >
+
+            <div class="left menu-attribute-name" translate>menu-help-title-text</div>
+              </div>
+          </div>
+
+
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

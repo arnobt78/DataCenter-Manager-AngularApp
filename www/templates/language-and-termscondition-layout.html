@@ -1,0 +1,112 @@
+<ion-view view-title="{{ 'terms-conditions-layout-title-text' | translate }}">
+  <ion-content class="application-background-color">
+
+    <!--LOGO-->
+    <div class="center">
+      <div class="company-logo company-logo-image"></div>
+    </div>
+
+    <!--INFORMATION MESSAGE BOX-->
+    <div class="row row-top-bottom-no-padding">
+      <div class="col col-80 col-offset-10 row-top-bottom-no-padding">
+        <!--INFO BUTTON-->
+        <div class="info-box-for-click right" ng-click="FSLang.ShowOrHideInformationDiv()">
+          <div class="image-size-1-50 information-blue-image right"></div>
+        </div>
+
+        <div class="row row-top-no-padding">
+          <div class="col info-msg-show ng-hide" ng-hide="FSLang.showInfoInLoginCredentials" >
+            <div class="row">
+              <div class="col col-20">
+                <div class="warning-blue-image image-size-2"> </div>
+              </div>
+              <div class="col col-80 " translate>
+                information-message-in-language-text
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--ERROR MESSAGE BOX-->
+    <div class="row">
+      <div class="col col-80 col-offset-10 row-top-bottom-no-padding">
+        <div class="error-msg-show ng-hide" id="errorContainer" ng-hide="FSLang.showError">
+          <div class="row">
+            <div class="col col-20 ">
+              <div class="warning-image image-size-2"> </div>
+            </div>
+            <div class="col col-80" translate>
+              error-message-agree-terms-and-condition-text
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--CHOOSE LANGUAGE TEXT-->
+    <div class="row">
+      <div class="col col-80 col-offset-10">
+        <div class="language-title-div-lanlayout">
+          <div class="application-text-color-gray font-size-only center" translate>
+            chose-your-language-text
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--CHOOSE LANGUAGE DROP DOWN-->
+    <!-- <div class="row-area application-theme-color-white col-offset-10 col-offset-right-10 border box-shadow">
+      <div class="col col-70">
+        <select class="button button-language-selection drop-arrow" ng-model="FSLang.selectedLanguage"
+                ng-change="FSLang.ChangeLanguage(FSLang.selectedLanguage)">
+          <option>English</option>
+          <option>German</option>
+        </select>
+      </div>
+      <div class="col col-10">
+          <div class="image-size-1-50 arrow-image margin-top-7"></div>
+      </div>
+    </div> -->
+
+    <!--LANGUAGE ITEMS-->
+    <div class="language-area margin-bottom-25 border margin-left-percent-12">
+      <div class="row height-4 application-theme-color-white box-shadow">
+        <div class="col col-90 padding-top-bottom-none">
+          <select class="language-selection-box drop-arrow" ng-model="FSLang.selectedLanguage" ng-change="FSLang.ChangeLanguage(FSLang.selectedLanguage)">
+            <option>English</option>
+            <option>Deutsch</option>
+          </select>
+        </div>
+        <div class="col col-10">
+          <div class="image-size-1-50 arrow-image margin-top-7"></div>
+        </div>
+      </div>
+    </div>
+
+    <!--TERMS AND CONDITIONS CHECK BOX-->
+    <div class="row margin-top-bottom-4" >
+      <div class="col col-10 col-offset-10">
+        <div ng-class="{'image-size-1 checked-image margin-top-2-07': FSLang.agreeTerms==true, 'margin-top-2-07 image-size-1 unchecked-image': FSLang.agreeTerms==false}"
+             ng-click="FSLang.ChangeAgreeStatus()"></div>
+      </div>
+      <div class="col col-70">
+        <span class="application-text-color-gray" translate>i-agree-text</span>
+        <a class="application-text-color-skyblue" ng-click="modal.show()" translate>terms-and-conditions-text</a>
+      </div>
+      <div class="col col-10"></div>
+    </div>
+
+    <!--CONTINUE BUTTON-->
+    <div class="row">
+      <div class="col col-80 col-offset-10">
+        <a class="button button-allwide margin-top-bottom-10" ng-click="FSLang.CheckForSavedCredentials()" translate>
+          continue-button-text
+        </a>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>
+

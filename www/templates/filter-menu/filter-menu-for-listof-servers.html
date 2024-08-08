@@ -1,0 +1,65 @@
+<ion-popover-view class = "application-theme-color height-filter-menu-servers fit">
+  <ion-content class = "application-theme-color">
+    <!--SEARCH-->
+    <div class="top-spacing-between-filter-item">
+      <div class="row row-no-padding">
+        <label class="item item-input input-search-box-filter-menu search-field">
+          <i class="icon ion-search placeholder-icon application-text-color-white"></i>
+          <input id="filter-search" ng-model="dashServersCtrl.searchTextofServersFilter" ng-enter="searchText()" focus-on="searchFinished" type="text" placeholder="{{ 'server-name-serachbox-name-text' | translate }}">
+        </label>
+      </div>
+    </div>
+    <!--ONLINE/OFFLINE-->
+    <div class="row title-filter-menu row-no-padding">
+      <div class="margin-left-15 margin-bottom-10" translate>
+        <b>onlineoffline-text </b>
+      </div>
+    </div>
+
+    <!--ONLINE/OFFLINE ITEMS-->
+    <ion-list >
+      <ion-item class="application-theme-color item-name">
+        <div class="row height-3 subtitle-filter-menu">
+          <div class="col col-offset-10 col-60 application-text-color-drakblue margin-top-5 word-wraps" translate>
+            online-text
+          </div>
+          <div class="col col-30">
+            <div ng-class="{'sub-item-margin-filter-menu image-size-1-70 checked-filter-image  margin-left-27': dashServersCtrl.onlineofflineFilter.indexOf('RUNNING') !== -1, 'sub-item-margin-filter-menu image-size-1-70 unchecked-filter-image margin-left-27': dashServersCtrl.onlineofflineFilter.indexOf('RUNNING') === -1}"
+               ng-click="dashServersCtrl.onlineofflineFilterClicked('RUNNING')"></div>
+            <br/>
+          </div>
+        </div>
+
+        <div class="row-area height-3 subtitle-filter-menu">
+          <div class="col col-offset-10 col-60 application-text-color-drakblue margin-top-5 word-wraps" translate>
+            offline-text
+          </div>
+          <div class="col col-30">
+            <div ng-class="{'sub-item-margin-filter-menu  image-size-1-70 checked-filter-image margin-left-27': dashServersCtrl.onlineofflineFilter.indexOf('SHUTOFF') !== -1, 'sub-item-margin-filter-menu image-size-1-70 unchecked-filter-image margin-left-27': dashServersCtrl.onlineofflineFilter.indexOf('SHUTOFF') === -1}"
+               ng-click="dashServersCtrl.onlineofflineFilterClicked('SHUTOFF')"></div>
+            <br/>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <!--REFRESH-->
+
+    <div class="height-3 title-filter-menu row-no-padding">
+
+      <div class="row">
+        <div class="col col-80">
+          <div class="margin-left-5 margin-top-5" translate> <b>refresh-text</b></div>
+        </div>
+        <div class="col col-10">
+          <div class="refresh-icon image-size-1-70" ng-click="dashServersCtrl.DefaultData()"></div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </ion-content>
+</ion-popover-view>
+

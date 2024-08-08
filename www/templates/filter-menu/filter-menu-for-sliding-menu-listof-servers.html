@@ -1,0 +1,125 @@
+<ion-popover-view style="height:{{(allServerCtrl.heightOfScreen) + 'px'}};" class = "application-theme-color height-filter-menu-servers-slidingmenu">
+  <ion-content scroll="true" class = "application-theme-color">
+
+    <!--SEARCH-->
+    <div class="top-spacing-between-filter-item">
+      <div class="row row-no-padding">
+        <label class="item item-input input-search-box-filter-menu search-field">
+          <i class="icon ion-search placeholder-icon application-text-color-white"></i>
+          <input id="filter-search" ng-model="allServerCtrl.searchTextofServersFilter" ng-enter="searchText()" focus-on="searchFinished" type="text" placeholder="{{ 'server-name-serachbox-name-text' | translate }}">
+        </label>
+      </div>
+    </div>
+
+    <!--LOCATION-->
+    <div class="row title-filter-menu row-no-padding">
+      <div class="margin-left-15 margin-bottom-10" translate>
+        <b> datacenter-region-text </b>
+      </div>
+    </div>
+
+    <!--LOCATION ITEMS-->
+    <ion-list>
+      <ion-item class="application-theme-color item-name">
+        <div ng-repeat="datacenter in allServerCtrl.datacenters  | unique: 'properties.location'">
+          <div class="row height-3 subtitle-filter-menu">
+
+            <div class="col col-offset-10 col-60 application-text-color-drakblue margin-top-5">
+              {{ datacenter.properties.location }}
+            </div>
+
+            <div class="col col-30">
+              <div ng-class="{'sub-item-margin-filter-menu image-size-1-70 checked-filter-image margin-left-27': allServerCtrl.locationNameFilter.indexOf(datacenter.properties.location) !== -1, 'sub-item-margin-filter-menu image-size-1-70 unchecked-filter-image margin-left-27': allServerCtrl.locationNameFilter.indexOf(datacenter.properties.location) === -1}"
+                 ng-click="allServerCtrl.locationFilterClicked(datacenter.properties.location)"></div>
+              <br/>
+            </div>
+          </div>
+
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <div class="height-3 row-no-padding title-filter-menu">
+    <div class="row " ng-click="allServerCtrl.toggleDC()" >
+      <div class="col col-80" >
+        <div class="margin-left-5 margin-top-5 application-text-color-white" translate><b>datacenters-text</b></div>
+      </div>
+      <div class="col col-10">
+        <div ng-class="allServerCtrl.showDC ? 'minus-blue-icon image-size-1-70 ' : 'plus-blue-icon image-size-1-70'"></div>
+      </div>
+    </div>
+    </div>
+
+    <!--DATACENTER ITEMS-->
+    <ion-list  ng-show="allServerCtrl.showDC">
+      <ion-item class="application-theme-color item-name">
+        <div ng-repeat="datacenter in allServerCtrl.datacenters | filter: allServerCtrl.filterByLocation">
+          <div class="row subtitle-filter-menu">
+            <div class="col col-offset-10 col-60 application-text-color-drakblue margin-top-5 word-wraps">
+              {{ datacenter.properties.name }}
+            </div>
+            <div class="col col-20">
+              <div ng-class="{'sub-item-margin-filter-menu image-size-1-70 checked-filter-image margin-left-27': allServerCtrl.datacenterNameFilter.indexOf(datacenter.properties.name) !== -1, 'sub-item-margin-filter-menu image-size-1-70 unchecked-filter-image margin-left-27': allServerCtrl.datacenterNameFilter.indexOf(datacenter.properties.name) === -1}"
+                 ng-click="allServerCtrl.datacenterFilterClicked(datacenter.properties.name)"></div>
+              <br/>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <!--ONLINE/OFFLINE-->
+    <div class="height-3 row-no-padding title-filter-menu">
+
+    <div class="row" ng-click="allServerCtrl.toggleOnOff()">
+      <div class="col col-80 ">
+        <div class="margin-left-5 margin-top-5 application-text-color-white" translate><b>onlineoffline-text</b></div>
+      </div>
+      <div class="col col-10">
+        <div ng-class="allServerCtrl.showOnOff ? 'minus-blue-icon image-size-1-70 ' : 'plus-blue-icon image-size-1-70'"></div>
+      </div>
+    </div>
+    </div>
+
+    <!--ONLINE/OFFLINE ITEMS-->
+    <ion-list  ng-show="allServerCtrl.showOnOff">
+      <ion-item class="application-theme-color item-name">
+        <div class="row height-3 subtitle-filter-menu">
+          <div class="col col-offset-10 col-60 application-text-color-drakblue margin-top-5 word-wraps" translate>
+            online-text
+          </div>
+          <div class="col col-30">
+            <div ng-class="{'sub-item-margin-filter-menu image-size-1-70 checked-filter-image margin-left-27': allServerCtrl.onlineofflineFilter.indexOf('RUNNING') !== -1, 'sub-item-margin-filter-menu  image-size-1-70 unchecked-filter-image margin-left-27': allServerCtrl.onlineofflineFilter.indexOf('RUNNING') === -1}"
+               ng-click="allServerCtrl.onlineofflineFilterClicked('RUNNING')"></div>
+            <br/>
+          </div>
+        </div>
+
+        <div class="row-area height-3 subtitle-filter-menu">
+          <div class="col col-offset-10 col-60 application-text-color-drakblue margin-top-5 word-wraps" translate>
+            offline-text
+          </div>
+          <div class="col col-30">
+            <div ng-class="{'sub-item-margin-filter-menu  image-size-1-70 checked-filter-image margin-left-27': allServerCtrl.onlineofflineFilter.indexOf('SHUTOFF') !== -1, 'sub-item-margin-filter-menu image-size-1-70 unchecked-filter-image margin-left-27': allServerCtrl.onlineofflineFilter.indexOf('SHUTOFF') === -1}"
+               ng-click="allServerCtrl.onlineofflineFilterClicked('SHUTOFF')"></div>
+            <br/>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <!--REFRESH-->
+    <div class="height-3 title-filter-menu row-no-padding">
+      <div class="row">
+        <div class="col col-80">
+          <div class="margin-left-5 margin-top-5" translate> <b>refresh-text</b></div>
+        </div>
+        <div class="col col-10">
+          <div class="refresh-icon image-size-1-70" ng-click="allServerCtrl.DefaultData()"></div>
+        </div>
+      </div>
+    </div>
+
+
+  </ion-content>
+</ion-popover-view>

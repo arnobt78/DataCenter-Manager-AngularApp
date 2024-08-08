@@ -1,0 +1,140 @@
+<ion-view view-title="{{ 'app-code-page-title-text' | translate }}">
+  <ion-content class="application-theme-color-white">
+      <!--LOGO-->
+      <div ng-hide="appCodeCtrl.hideLogo" class="center">
+        <div class="company-logo company-logo-image"></div>
+      </div>
+      <!--SET APP CODE-->
+      <div ng-hide="appCodeCtrl.hideNormalFeedback" class="row">
+        <div class="col col-80 col-offset-10">
+          <div class="application-text-color-skyblue center margin-top-10" translate>{{appCodeCtrl.pinCodeTitle}}</div>
+        </div>
+      </div>
+
+
+
+    <!--INFORMATION MESSAGE BOX-->
+    <div ng-hide="appCodeCtrl.showInfoFeedback" class="row row-top-bottom-no-padding margin-top-10">
+      <div class="col col-80 col-offset-10 row-top-bottom-no-padding">
+        <!--INFO BUTTON-->
+        <div class="info-box-for-click right" ng-click="appCodeCtrl.ShowOrHideInformationDiv()">
+          <div class="image-size-1-50 information-blue-image right"></div>
+        </div>
+
+        <div class="row row-top-no-padding">
+          <div class="col info-msg-show ng-hide" ng-hide="appCodeCtrl.showInfoBox" >
+            <div class="row">
+              <div class="col col-20">
+                <div class="warning-blue-image image-size-2"> </div>
+              </div>
+              <div class="col col-80 " translate>
+                {{appCodeCtrl.pinCodeTitle}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+      <!--APP PIN CODE BOXES-->
+      <div class="app-code-insertbox-pincodelayout">
+        <div class="row">
+          <div class="col">
+            <input id="pin1" type="{{appCodeCtrl.inputType}}" maxlength="1" size="1" class="insert-pin application-text-color-skyblue" ng-model="appCodeCtrl.pinCode1" disabled="disabled">
+          </div>
+
+          <div class="col">
+            <input id="pin2" type="{{appCodeCtrl.inputType}}" maxlength="1" size="1" class="insert-pin application-text-color-skyblue" ng-model="appCodeCtrl.pinCode2" disabled="disabled">
+          </div>
+
+          <div class="col">
+            <input id="pin3" type="{{appCodeCtrl.inputType}}" maxlength="1" size="1" class="insert-pin application-text-color-skyblue" ng-model="appCodeCtrl.pinCode3" disabled="disabled">
+          </div>
+
+          <div class="col">
+            <input id="pin4" type="{{appCodeCtrl.inputType}}" maxlength="1" size="1" class="insert-pin application-text-color-skyblue" ng-model="appCodeCtrl.pinCode4" disabled="disabled">
+          </div>
+
+          <div class="col pin-code-show-button" id="pressClick" ng-model="passwordShowHide" ng-click="appCodeCtrl.hideShowPassword($event)">
+            <i class="{{appCodeCtrl.iconClass}}" style="font-size: 25px;"></i>
+          </div>
+
+        </div>
+      </div>
+      <!--KEYPAD OF PIN CODE-->
+      <div class="keypad-pincodelayout">
+
+        <div class="row-spacing">
+          <div class="row">
+            <div class="col">
+              <div class="image-size-4 number1-image" ng-click="appCodeCtrl.PressAppCode(1)"></div>
+            </div>
+
+            <div class="col">
+              <div class="image-size-4 number2-image" ng-click="appCodeCtrl.PressAppCode(2)"></div>
+            </div>
+
+            <div class="col">
+              <div class="image-size-4 number3-image" ng-click="appCodeCtrl.PressAppCode(3)"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row-spacing">
+          <div class="row">
+            <div class="col">
+              <div class="image-size-4 number4-image" ng-click="appCodeCtrl.PressAppCode(4)"></div>
+            </div>
+
+            <div class="col">
+              <div class="image-size-4 number5-image" ng-click="appCodeCtrl.PressAppCode(5)"></div>
+            </div>
+
+            <div class="col">
+              <div class="image-size-4 number6-image" ng-click="appCodeCtrl.PressAppCode(6)"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row-spacing">
+          <div class="row">
+            <div class="col">
+              <div class="image-size-4 number7-image" ng-click="appCodeCtrl.PressAppCode(7)"></div>
+            </div>
+
+            <div class="col">
+              <div class="image-size-4 number8-image" ng-click="appCodeCtrl.PressAppCode(8)"></div>
+            </div>
+
+            <div class="col">
+              <div class="image-size-4 number9-image" ng-click="appCodeCtrl.PressAppCode(9)"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row-spacing">
+          <div class="row">
+            <div class="col">
+              <div class="image-size-4 cross-image" ng-click="appCodeCtrl.PressAppCode(-1)"></div>
+            </div>
+
+            <div class="col">
+              <div class="image-size-4 number0-image" ng-click="appCodeCtrl.PressAppCode(0)"></div>
+            </div>
+
+            <div class="col">
+              <div class="image-size-4 yes-image" ng-hide="appCodeCtrl.IsPinCodeComplete()" ng-click="appCodeCtrl.PressAppCode('verify')"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </ion-content>
+</ion-view>
+
+

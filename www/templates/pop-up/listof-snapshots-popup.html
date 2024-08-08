@@ -1,0 +1,6 @@
+
+ <ion-list>
+  <ion-item ng-repeat="snapshot in singleStorageCtrl.snapshotList.items">
+    <div class="application-text-color-gray" ng-click="singleStorageCtrl.ShowSnapshotActionsPopup(snapshot.id)" > {{snapshot.properties.name}}</div>
+  </ion-item>
+</ion-list>

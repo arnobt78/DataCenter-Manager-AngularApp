@@ -1,0 +1,239 @@
+<ion-view view-title="{{ 'help-title-text' | translate }}">
+  <ion-content class="application-background-color">
+
+    <!--SEARCH BOX-->
+    <div class="margin-top-bottom-25 margin-left-10 margin-right-10">
+      <div class="row row-no-padding">
+        <label class="item item-input input-search-box-help box-shadow">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input  ng-model="helpCtrl.searchTextofHelp" ng-enter="searchText()" focus-on="searchFinished" type="text" placeholder="{{ 'help-search-text' | translate }}" ng-click="helpCtrl.toggleGroup('faqhelp')">
+        </label>
+      </div>
+    </div>
+
+    <div class="margin-left-10 margin-right-10 margin-bottom-25">
+
+      <!--FAQ HELP BOX-->
+      <div class="row height-4 application-theme-color-white margin-top-25 box-shadow border-area" ng-click="helpCtrl.toggleGroup('faqhelp')">
+        <div class="col col-90">
+          <div class="margin-top-8 margin-left-5 application-text-color-gray font-size" translate>faq-help-title-text</div>
+        </div>
+        <div class="col col-10">
+            <div ng-class="helpCtrl.isGroupShown('faqhelp') ? ' image-size-1-50 minus-icon left margin-top-7' : ' image-size-1-50 plus-icon left margin-top-7'"></div>
+        </div>
+      </div>
+
+      <!--FAQ HELP QUESTIONS-->
+      <div class="row row-no-padding application-theme-color-lightblue box-shadow" ng-show="helpCtrl.isGroupShown('faqhelp')">
+        <div class="padding-top-bottom-20">
+          <ion-list>
+            <ion-item class="custom-list-item margin-bottom-25 box-shadow" ng-repeat="qa in helpCtrl.questionandanswers | filter: {question: helpCtrl.searchTextofHelp}" >
+                <div class="row row-no-padding list-bar">
+                  <div class="word-wraps margin-top-10 margin-bottom-10 margin-left-10 margin-right-10" translate>{{qa.question}}</div>
+                </div>
+                <div class="row row-no-padding application-theme-color-white">
+                  <div class="application-text-color-gray word-wraps margin-left-10 margin-right-10 padding-top-bottom-20" translate>
+                    {{qa.answer}}
+                  </div>
+                </div>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <!--GENERAL HELP BOX-->
+      <div class="row-area height-4 application-theme-color-white margin-top-25 box-shadow border-area" ng-click="helpCtrl.toggleGroup('generalhelp')">
+        <div class="col col-90">
+          <div class="margin-top-8 margin-left-5 application-text-color-gray font-size" translate>general-help-title-text</div>
+        </div>
+        <div class="col col-10">
+            <div ng-class="helpCtrl.isGroupShown('generalhelp') ? 'image-size-1-50 minus-icon left margin-top-7' : 'image-size-1-50 plus-icon left margin-top-7'"></div>
+        </div>
+      </div>
+
+      <!--GENERAL HELP TEXT-->
+      <div class="row row-no-padding application-theme-color-lightblue box-shadow" ng-show="helpCtrl.isGroupShown('generalhelp')">
+        <div class="padding-top-bottom-20 padding-all-20 application-text-color-gray border-area-top-none" translate>
+          general-text-details
+        </div>
+      </div>
+
+      <!--ICON DESCRIPTION BOX-->
+      <div class="row-area height-4 application-theme-color-white margin-top-25 box-shadow border-area" ng-click="helpCtrl.toggleGroup('iconhelp')">
+        <div class="col col-90">
+          <div class="margin-top-8 margin-left-5 application-text-color-gray font-size" translate>icon-help-title-text</div>
+        </div>
+        <div class="col col-10">
+          <div ng-class="helpCtrl.isGroupShown('iconhelp') ? ' image-size-1-50 minus-icon left margin-top-7' : ' image-size-1-50 plus-icon left margin-top-7'"></div>
+        </div>
+      </div>
+
+      <!--ICON DESCRIPTION-->
+      <div class="application-theme-color-lightblue box-shadow border-area-top-none" ng-show="helpCtrl.isGroupShown('iconhelp')">
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 datacenter-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-datacenter-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 server-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-server-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 storage-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-storage-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 core-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-core-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 memory-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-memory-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 storage-size-datacenter-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-storage-size-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 germanflag-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-german-flag-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 usaflag-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-usa-flag-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 version-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-version-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 connected-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-connected-volume-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 disconnected-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-disconnected-volume-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 network-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-network-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 hotplugging-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-hotplugging-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 os-linux-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-os-linux-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 os-windows-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-os-windows-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-5 image-size-2 os-other-image right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-os-other-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-9 image-size-1 online-icon right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-online-text</div>
+          </div>
+        </div>
+
+        <div class="row iconhelp-div">
+          <div class="col col-20">
+            <div class="margin-top-9 image-size-1 offline-icon right"></div>
+          </div>
+          <div class="col col-80">
+            <div class="margin-top-7 margin-left-13 application-text-color-gray" translate>icon-help-offline-text</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+</ion-content>
+</ion-view>

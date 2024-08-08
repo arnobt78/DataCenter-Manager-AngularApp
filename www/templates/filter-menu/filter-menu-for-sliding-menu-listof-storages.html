@@ -1,0 +1,145 @@
+<ion-popover-view  style="height:{{(allStorageCtrl.heightOfScreen) + 'px'}};" class = "application-theme-color height-filter-menu-storages-slidingmenu">
+  <ion-content scroll="true" class = "application-theme-color overflow-scroll-filter">
+
+    <div class="margin-top-10">
+      <div class="row row-no-padding">
+        <label class="item item-input input-search-box-filter-menu search-field">
+          <i class="icon ion-search placeholder-icon application-text-color-white"></i>
+          <input id="filter-search" ng-model="allStorageCtrl.searchTextofSMStoragesFilter" ng-enter="searchText()" focus-on="searchFinished" type="text" placeholder=" {{ 'storage-name-serachbox-name-text' | translate }}">
+        </label>
+      </div>
+    </div>
+
+    <!--LOCATION-->
+    <div class="row title-filter-menu row-no-padding">
+      <div class="margin-left-15 margin-bottom-10" translate>
+        <b> datacenter-region-text </b>
+      </div>
+    </div>
+
+    <ion-list>
+      <ion-item class="application-theme-color item-name">
+        <div ng-repeat="datacenter in allStorageCtrl.datacenters  | unique: 'properties.location'">
+          <div class="row height-3 subtitle-filter-menu">
+            <div class="col col-offset-10 col-60 application-text-color-drakblue margin-top-5">
+              {{ datacenter.properties.location }}
+            </div>
+            <div class="col col-30">
+              <div ng-class="{'sub-item-margin-filter-menu image-size-1-70 checked-filter-image margin-left-27': allStorageCtrl.locationNameFilter.indexOf(datacenter.properties.location) !== -1, 'sub-item-margin-filter-menu image-size-1-70 unchecked-filter-image margin-left-27': allStorageCtrl.locationNameFilter.indexOf(datacenter.properties.location) === -1}"
+                 ng-click="allStorageCtrl.locationFilterClicked(datacenter.properties.location)"></div>
+              <br/>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <div class="height-3 row-no-padding title-filter-menu">
+    <div class="row" ng-click="allStorageCtrl.toggleDC()">
+      <div class="col col-80" >
+        <div class="margin-left-5 margin-top-5 application-text-color-white" translate><b>datacenters-text</b></div>
+      </div>
+      <div class="col col-10">
+        <div ng-class="allStorageCtrl.showDC ? 'minus-blue-icon image-size-1-70' : 'plus-blue-icon image-size-1-70  '"></div>
+      </div>
+    </div>
+    </div>
+
+    <ion-list  ng-show="allStorageCtrl.showDC">
+      <ion-item class="application-theme-color item-name">
+        <div ng-repeat="datacenter in allStorageCtrl.datacenters | filter: allStorageCtrl.filterByLocation">
+          <div class="row subtitle-filter-menu">
+            <div class="col col-offset-10 col-60 application-text-color-drakblue margin-top-5 word-wraps">
+              {{ datacenter.properties.name }}
+            </div>
+            <div class="col col-30">
+              <div ng-class="{'sub-item-margin-filter-menu image-size-1-70 checked-filter-image margin-left-27': allStorageCtrl.datacenterNameFilter.indexOf(datacenter.properties.name) !== -1, 'sub-item-margin-filter-menu image-size-1-70 unchecked-filter-image margin-left-27': allStorageCtrl.datacenterNameFilter.indexOf(datacenter.properties.name) === -1}"
+                 ng-click="allStorageCtrl.datacenterFilterClicked(datacenter.properties.name)"></div>
+              <br/>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <div class="height-3 row-no-padding title-filter-menu">
+    <div class="row" ng-click="allStorageCtrl.toggleServer()">
+      <div class="col col-80">
+        <div class="margin-left-5 margin-top-5 application-text-color-white" translate><b>servers-text</b></div>
+      </div>
+      <div class="col col-10">
+        <div ng-class="allStorageCtrl.showServer ? 'minus-blue-icon image-size-1-70  ' : 'plus-blue-icon image-size-1-70 '"></div>
+      </div>
+    </div>
+    </div>
+
+    <ion-list  ng-show="allStorageCtrl.showServer">
+      <ion-item class="application-theme-color item-name">
+        <div ng-repeat="datacenter in allStorageCtrl.datacenters | filter: allStorageCtrl.filterByLocation | filter: allStorageCtrl.filterByDatacenter">
+          <div ng-repeat="server in datacenter.servers">
+            <div class="row subtitle-filter-menu">
+              <div class="col col-offset-10 col-60 application-text-color-drakblue margin-top-5 word-wraps">
+                {{ server.properties.name }}
+              </div>
+              <div class="col col-30">
+                <div ng-class="{'sub-item-margin-filter-menu  image-size-1-70 checked-filter-image margin-left-27': allStorageCtrl.serverNameFilter.indexOf(server.properties.name) !== -1, 'sub-item-margin-filter-menu image-size-1-70 unchecked-filter-image margin-left-27': allStorageCtrl.serverNameFilter.indexOf(server.properties.name) === -1}"
+                   ng-click="allStorageCtrl.serverFilterClicked(server.properties.name)"></div>
+                <br/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <div class="height-3 row-no-padding title-filter-menu">
+    <div class="row " ng-click="allStorageCtrl.toggleStatus()" >
+      <div class="col col-80">
+        <div class="margin-left-5 margin-top-5 application-text-color-white" translate><b>attacheddetached-text</b></div>
+      </div>
+      <div class="col col-10">
+        <div ng-class="allStorageCtrl.showStatus ? 'minus-blue-icon image-size-1-70 ' : 'plus-blue-icon image-size-1-70 '"></div>
+      </div>
+    </div>
+    </div>
+
+    <ion-list  ng-show="allStorageCtrl.showStatus">
+      <ion-item class="application-theme-color item-name">
+        <div class="row height-3 subtitle-filter-menu">
+          <div class="col col-offset-10 col-60 application-text-color-drakblue margin-top-5 word-wraps" translate>
+            attached-text
+          </div>
+          <div class="col col-30">
+            <div ng-class="{'sub-item-margin-filter-menu  image-size-1-70 checked-filter-image margin-left-27': allStorageCtrl.isAttached ==false, 'sub-item-margin-filter-menu  image-size-1-70 unchecked-filter-image margin-left-27': allStorageCtrl.isAttached ==true }"
+               ng-click="allStorageCtrl.attachedFilterClicked()"></div><br/>
+          </div>
+        </div>
+
+        <div class="row-area height-3 subtitle-filter-menu">
+          <div class="col col-offset-10 col-60 application-text-color-drakblue margin-top-5 word-wraps" translate>
+            detached-text
+          </div>
+          <div class="col col-30">
+            <div ng-class="{'sub-item-margin-filter-menu image-size-1-70 checked-filter-image margin-left-27': allStorageCtrl.isDetached ==false, 'sub-item-margin-filter-menu image-size-1-70 unchecked-filter-image margin-left-27': allStorageCtrl.isDetached ==true }"
+               ng-click="allStorageCtrl.detachedFilterClicked()"></div>
+            <br/>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <!--REFRESH-->
+    <div class="height-3 title-filter-menu row-no-padding">
+      <div class="row">
+        <div class="col col-80">
+          <div class="margin-left-5 margin-top-5" translate> <b>refresh-text</b></div>
+        </div>
+        <div class="col col-10">
+          <div class="refresh-icon image-size-1-70" ng-click="allStorageCtrl.DefaultData()"></div>
+        </div>
+      </div>
+    </div>
+
+
+  </ion-content>
+</ion-popover-view>

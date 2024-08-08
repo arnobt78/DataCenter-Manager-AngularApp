@@ -1,0 +1,89 @@
+<ion-view view-title="{{ 'storage-title-text' | translate }}">
+  <ion-nav-buttons side="right">
+    <div class="button button-filter button-icon icon padding-left-right-0" ng-click="allStorageCtrl.popover.show($event)">
+        <div class="filter-image image-size-1-50 margin-right-5 filter-position" ></div>
+    </div>
+  </ion-nav-buttons>
+
+  <ion-content class="application-background-color">
+
+    <!--CREATE STORAGE BUTTON-->
+    <div class="row margin-top-bottom-20">
+      <div class="col center">
+        <a class="button button-allwide-80" ng-click="allStorageCtrl.DatacentersList()" translate>
+          create-only-storage-button-text
+        </a>
+      </div>
+    </div>
+
+    <div class="margin-top-25"></div>
+
+    <ion-list>
+      <ion-item class="custom-list-item application-background-color" ng-repeat="datacenter in allStorageCtrl.datacenters | filter: allStorageCtrl.filterByLocation | filter: allStorageCtrl.filterByDatacenter ">
+        <div class="row application-theme-color">
+         <!-- ng-click="allStorageCtrl.EnterDatacenter(datacenter.id, datacenter.properties.name)" -->
+          <div class="col col-10">
+            <div class="menu-icon-1-image image-size-2"> </div>
+          </div>
+          <div class="col col-90">
+            <div class="application-text-color-white margin-top-7"><b>{{ datacenter.properties.name }}</b> </div>
+          </div>
+          <!-- <div class="col col-10 col-offset-20">
+            <div class="arrow-image image-size-1 margin-top-bottom-15"> </div>
+          </div> -->
+        </div>
+
+        <ion-list ng-if="allStorageCtrl.showAttached">
+          <ion-item class="custom-list-item application-background-color" ng-repeat="server in datacenter.servers | filter: allStorageCtrl.filterByServer ">
+            <!--<div class="row height-3 application-theme-color-lightblue" ng-click="allStorageCtrl.EnterSingleServer(server.id, server.properties.name, datacenter.id, datacenter.properties.name)">-->
+              <!--<div class="col col-80">-->
+                <!--<div class="margin-bottom-5 application-text-color-gray"><b>{{ server.properties.name }}</b> </div>-->
+              <!--</div>-->
+              <!--<div class="col col-10 ">-->
+                <!--<div ng-class=" { 'margin-top-bottom-10 margin-left-5 light-red':server.properties.vmState=='SHUTOFF', 'margin-top-bottom-10 margin-left-5 light-green':server.properties.vmState=='RUNNING' }"></div>-->
+              <!--</div>-->
+              <!--<div class="arrow-image image-size-1 margin-top-bottom-10"> </div>-->
+            <!--</div>-->
+
+            <!--VOLUME LIST-->
+            <ion-list >
+              <ion-item class="custom-list-item margin-bottom-25 application-background-color box-shadow" ng-repeat="volume in allStorageCtrl.filteredStorage = (server.entities.volumes.items |   filter: { properties: { name: allStorageCtrl.searchTextofSMStoragesFilter }} | orderBy: 'properties.name')">
+                <div class="row application-theme-color-white"  ng-click="allStorageCtrl.EnterSingleStorage(volume.id, volume.properties.name, datacenter.id, datacenter.properties.name, server)">
+                  <div class="col col-80">
+                    <div class="margin-top-bottom-13 application-text-color-gray font-size">{{ volume.properties.name }}</div>
+                  </div>
+                  <div class="col col-10 ">
+                    <div class="connected-image image-size-1-50 margin-top-bottom-10"> </div>
+                  </div>
+                  <div class="arrow-image image-size-1 margin-top-bottom-20"> </div>
+                </div>
+
+              </ion-item>
+            </ion-list>
+          </ion-item>
+        </ion-list>
+
+<!--CONNECTED DISCONNECTED LIST-->
+        <ion-list ng-if="allStorageCtrl.isAnyDetached && allStorageCtrl.showDettached">
+          <ion-item class="animated zoomIn custom-list-item box-shadow application-background-color " ng-repeat="volume in datacenter.volumes |   filter: { properties: { name: allStorageCtrl.searchTextofSMStoragesFilter } } ">
+            <div class="row height-4 application-theme-color-white margin-bottom-25 box-shadow" ng-if="!allStorageCtrl.checkIfConnected(volume.id)" ng-click="allStorageCtrl.EnterSingleStorage(volume.id, volume.properties.name, datacenter.id, datacenter.properties.name, null)">
+              <div class="col col-80">
+                <div class="application-text-color-gray margin-top-bottom-13 font-size">{{ volume.properties.name }}</div>
+              </div>
+              <div class="col col-10 ">
+                <div class="disconnected-image image-size-1-50 margin-top-bottom-10"> </div>
+              </div>
+              <div class="arrow-image image-size-1 margin-top-bottom-20"> </div>
+            </div>
+          </ion-item>
+        </ion-list>
+
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>
+
+
+
+

@@ -1,0 +1,100 @@
+<ion-view view-title="{{ singleServerCtrl.serverName }}">
+  <ion-content class="application-background-color">
+
+    <div class="margin-top-25"></div>
+
+    <!--OFFLINE/ONLINE-->
+      <div class="row height-4  application-theme-color-lightblue  box-shadow">
+
+        <div class="col col-45">
+        <div ng-class=" {'margin-top-10 image-size-1 offline-icon right':singleServerCtrl.singleServerData.properties.vmState=='SHUTOFF', 'margin-top-10 image-size-1 online-icon right':singleServerCtrl.singleServerData.properties.vmState=='RUNNING' }"></div>
+        </div>
+        <div class="col col-30">
+          <div class="left margin-top-8 application-text-color-gray">{{singleServerCtrl.statusCheck}}</div>
+        </div>
+      </div>
+
+      <!--START/STOP and REBOOT BUTTON -->
+        <div class="row padding-top-bottom-25 application-theme-color-white">
+          <div class="col">
+            <a class="button-link" ng-click="singleServerCtrl.ShowStartStopServerPopup(singleServerCtrl.singleServerData.id, singleServerCtrl.singleServerData.properties.vmState=='RUNNING')">
+              <div ng-class=" { 'start-image image-size-2-80':singleServerCtrl.singleServerData.properties.vmState=='SHUTOFF', 'stop-image image-size-2-80 ':singleServerCtrl.singleServerData.properties.vmState=='RUNNING' }"
+                   ng-class="start-icon"></div>
+              <div class="application-text-color-gray center margin-top-5" translate>
+                {{singleServerCtrl.buttonStatusCheck}}
+              </div>
+            </a>
+          </div>
+          <div class="col">
+            <a class="button-link" ng-click="singleServerCtrl.ShowRebootServerPopup(singleServerCtrl.singleServerData.id)">
+              <div class="restart-image image-size-2-80"></div>
+              <div class="application-text-color-gray center margin-top-5" translate>
+                reboot-text
+              </div>
+            </a>
+          </div>
+        </div>
+
+      <!--SERVER INFORMATION-->
+      <div class="box-shadow">
+        <div class="row application-theme-color-lightblue">
+          <div class="row margin-top-15">
+            <div class="col border-right-1 center">
+              <div class="row">
+                <div class="col col-50">
+                  <div class="core-image image-size-2-50 right"> </div>
+                </div>
+                <div class="col col-50 ">
+                  <div class="application-text-color-gray left  margin-top-10">  {{ singleServerCtrl.singleServerData.properties.cores }}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col center">
+              <div class="row">
+                <div class="col col-40">
+                  <div class="memory-image image-size-2-50 right"> </div>
+                </div>
+                <div class="col col-60 ">
+                  <div class="application-text-color-gray left left margin-top-10">
+                  {{ singleServerCtrl.singleServerData.properties.ram }} MB
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ion-list class="application-theme-color-lightblue margin-bottom-25">
+          <ion-item class="item-for-network" ng-repeat="nic in singleServerCtrl.nics">
+            <div class="row application-theme-color-lightblue ">
+              <div class="col col-20 center">
+                <div class="network-image image-size-2-50"> </div>
+              </div>
+              <div class="col col-40 application-text-color-gray  margin-top-10" ng-show="nic.properties.name != '' ">
+               <div class="center">NIC {{ nic.properties.name }}</div>
+              </div>
+              <div class="col col-40 application-text-color-gray  margin-top-10">
+                <div class="center"> IP {{ nic.properties.ips }}</div>
+              </div>
+            </div>
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <!--VIEW VOLUME BUTTON-->
+      <div class="height-4 margin-top-25 imagebutton-div" ng-click="singleServerCtrl.ShowVolumeLists()">
+        <div class="row">
+            <div class="col col-offset-20 col-10">
+              <div class="eye-white-image image-size-2 margin-top-5 "> </div>
+            </div>
+            <div class="col col-offset-10 col-60">
+              <div class="margin-top-10 application-text-color-white left" >
+                <div translate>volume-button-text</div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+  </ion-content>
+</ion-view>
+
+

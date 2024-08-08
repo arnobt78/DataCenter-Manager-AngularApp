@@ -1,0 +1,86 @@
+<ion-view view-title="{{ 'storage-title-text' | translate }}">
+  <ion-nav-buttons side="right">
+    <div class="button button-filter button-icon icon padding-left-right-0" ng-click="storagesCtrl.popover.show($event)">
+        <div class="filter-image image-size-1-50 margin-right-5 filter-position" ></div>
+    </div>
+  </ion-nav-buttons>
+
+  <ion-content class="application-background-color">
+
+    <div class="row margin-top-bottom-20">
+      <div class="col center">
+        <a class="button button-allwide-80" ng-click="storagesCtrl.CreateNewVolume()" translate>
+          create-storage-button-text
+        </a>
+      </div>
+    </div>
+
+  	<ion-list>
+	  <ion-item class="volume-list-loop margin-bottom-25 box-shadow" ng-repeat="volume in storagesCtrl.volumesList |   filter: { properties: { name: storagesCtrl.searchTextofStoragesFilter } } | orderBy: 'properties.name'">
+
+	  	<div class="row list-bar">
+	  		<div class="col col-80 application-text-color-white font-size">{{volume.properties.name}}</div>
+
+	  		<div class="col col-offset-10 col-10">
+
+        <!-- <div class="connected-image image-size-1-70" ng-if="storagesCtrl.checkIfConnected(volume.id)" ></div>
+        <div class="connected-image image-size-1-70"ng-if="!storagesCtrl.checkIfConnected(volume.id)"></div> -->
+        <div class="connected-image image-size-1-50"></div>
+
+        </div>
+	  	</div>
+
+      <div class="row application-theme-color-lightblue">
+
+      <div class="row margin-top-15" ng-click="storagesCtrl.ShowSingleStorage(volume.id, volume.properties.name)">
+
+        <div class="col col-45 border-right-1" ng-if="storagesCtrl.server.properties.bootVolume.id == volume.id">
+          <div class="row">
+            <div class="col" >
+              <div class="application-text-color-gray margin-top-5 center" translate>boot-device-text</div>
+            </div>
+            <div class="col">
+              <div class="bootdevice-tick-image image-size-1-50 left"> </div>
+            </div>
+          </div>
+        </div>
+
+	  		<div class="col col-45 border-right-1" ng-if="storagesCtrl.server.properties.bootVolume.id != volume.id">
+          <div class="row">
+            <div class="col" >
+              <div class="application-text-color-gray margin-top-5 center" translate>boot-device-text</div>
+            </div>
+            <div class="col">
+              <div class="bootdevice-cross-image image-size-1-50 left"> </div>
+            </div>
+          </div>
+        </div>
+	  		<div class="col col-45">
+          <div class="row">
+            <div class="col col-75" >
+              <div class="col application-text-color-gray margin-top-5 center" translate>device-type-text</div>
+            </div>
+            <div class="col col-25">
+              <div class="os-linux-image image-size-2 left" ng-if="volume.properties.licenceType == 'LINUX' "> </div>
+              <div class="os-mac-image image-size-2 left" ng-if="volume.properties.licenceType == 'MAC' "> </div>
+              <div class="os-windows-image image-size-2 left" ng-if="volume.properties.licenceType == 'WINDOWS' "> </div>
+              <div class="os-other-image image-size-2 left" ng-if="volume.properties.licenceType == 'UNKNOWN' "> </div>
+              <div class="os-other-image image-size-2 left" ng-if="volume.properties.licenceType == 'OTHER' "> </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col col-10">
+          <div class=" arrow-image image-size-1 margin-top-bottom-25 right"></div>
+        </div>
+
+
+	  	</div>
+
+      </div>
+	  </ion-item>
+	</ion-list>
+
+  </ion-content>
+</ion-view>

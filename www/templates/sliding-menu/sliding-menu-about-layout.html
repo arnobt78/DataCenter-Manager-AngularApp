@@ -1,0 +1,55 @@
+<ion-view view-title="{{ 'about-title-text' | translate }}">
+  <ion-content scroll="true" class="application-theme-color-white">
+    <!--LOGO-->
+    <div class="center">
+      <div class="company-logo get-it-live-image"></div>
+    </div>
+
+    <!--ABOUT-->
+    <div class="application-theme-color-white margin-left-20 margin-right-20">
+      <div class="application-text-color-gray" translate>
+        <pre> about-text </pre>
+      </div>
+    </div>
+
+    <!--VERSION NUMBER -->
+    <div class="margin-left-20 margin-right-20 margin-top-bottom-20 border application-theme-color-white ">
+      <div class="row">
+        <div class="col col-80">
+          <div class="left font-size application-text-color-skyblue">
+            {{aboutCtrl.versionNumber}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--ALLOWED FINGERPRINT -->
+    <div class="margin-left-20 margin-right-20 margin-top-bottom-20 border application-theme-color-white ">
+      <div class="row">
+        <div class="left font-size application-text-color-skyblue" translate>
+          allowed-finger-prints
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="left font-size-only application-text-color-gray word-wraps">
+          {{aboutCtrl.allowedFingerprints}}
+        </div>
+      </div>
+
+    </div>
+
+    <!--TERMS AND CONDITIONS-->
+    <div class="margin-left-20 margin-right-20 margin-top-bottom-20 border application-theme-color-white "  >
+      <div class="row" ng-click="modal.show()">
+        <div class="col col-90">
+          <div class="left font-size application-text-color-skyblue" translate>about-terms-and-conditions-text</div>
+        </div>
+        <div class="col col-10">
+          <div class="image-size-1-50 arrow-image"></div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

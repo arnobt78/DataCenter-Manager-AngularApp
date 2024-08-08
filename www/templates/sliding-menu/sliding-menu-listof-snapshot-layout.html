@@ -1,0 +1,73 @@
+<ion-view view-title="{{ 'snapshot-lists-text' | translate }}">
+  <ion-nav-buttons side="right">
+    <div class="button button-filter button-icon icon padding-left-right-0" ng-click="snapshotCtrl.popover.show($event)">
+        <div class="filter-image image-size-1-50 margin-right-5 filter-position" ></div>
+    </div>
+  </ion-nav-buttons>
+
+  <ion-content class="application-background-color">
+
+    <!--CREATE SNAPSHOT BUTTON-->
+    <div class="imagebutton-div margin-top-bottom-20"  ng-click="snapshotCtrl.CreateSnapshot()">
+      <div class="row">
+        <div class="col col-offset-20 col-10">
+          <div class="menu-icon-4-image image-size-2 "> </div>
+        </div>
+        <div class="col col-offset-10 col-60 ">
+          <div class="left margin-top-5" translate>create-snapshot-text</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="snapshot-list-none application-background-color application-text-color-gray font-size-only center" ng-if="snapshotCtrl.snapshotList.items==0" translate>
+        snapshot-list-none-text
+    </div>
+
+
+    <ion-list>
+      <ion-item class="custom-list-item margin-bottom-25 box-shadow" ng-repeat="snapshot in snapshotCtrl.snapshotList.items |   filter: { properties: { name: snapshotCtrl.searchTextofSnapshotsFilter }} | orderBy: 'properties.name'">
+
+        <!--TITLE OF SNAPSHOT-->
+        <div class="row list-bar">
+          <div class="col col-50">
+            <div class="margin-left-5 left font-size">{{(snapshot.properties.name | limitTo: 16 ).trim()}}<span ng-show="snapshot.properties.name.length > 16">...</span></div>
+          </div>
+          <div class="col col-50">
+            <div class="margin-left-5 right font-size">{{snapshot.metadata.createdDate  | date:"MM.dd.yyyy'-'h:mma"}}</div>
+          </div>
+        </div>
+
+        <div class="row margin-top-bottom-25">
+
+          <!--DELETE BUTTON-->
+          <div class="col col-offset-20 col-60">
+            <div class="row imagebutton-3-div row-no-padding " ng-click="snapshotCtrl.DeleteSnapshot(snapshot.id)">
+              <div class="col col-40">
+                <div class="delete-image image-size-1-50 margin-top-bottom-10 right"> </div>
+              </div>
+              <div class="col col-60 ">
+                <div class="margin-left-5 margin-top-bottom-13 left" translate>delete-snapshot-button-text</div>
+              </div>
+            </div>
+          </div>
+
+          <!--RESTORE BUTTON-->
+          <!--<div class="col margin-left-10 margin-right-10">-->
+            <!--<div class="row row-no-padding imagebutton-3-div" ng-click="snapshotCtrl.RestoreSnapshot(snapshot.id)">-->
+              <!--<div class="col col-40">-->
+                <!--<div class="restore-image image-size-1-50 margin-top-bottom-10 right"> </div>-->
+              <!--</div>-->
+              <!--<div class="col col-60 ">-->
+                <!--<div class="margin-left-5 margin-top-bottom-13 left" translate>restore-snapshot-button-text</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+        </div>
+
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>

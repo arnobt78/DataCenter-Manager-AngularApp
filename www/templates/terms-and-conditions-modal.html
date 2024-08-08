@@ -1,0 +1,43 @@
+<ion-view>
+
+    <div class="modal">
+      <header class="bar bar-header bar-balanced">
+        <h1 class="title" translate>terms-and-conditions-text</h1>
+        <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
+      </header>
+      <ion-content scroll="true" has-header="true" padding="true">
+        <p class="height-3"></p>
+
+        <!--LOGO-->
+        <div class="center">
+          <div class="company-logo company-logo-image"></div>
+        </div>
+
+        <!--TERMS AND CONDITIONS-->
+        <div class="application-theme-color-lightblue margin-left-10 margin-right-10 border-area">
+          <div class="application-text-color-gray margin-left-20 margin-right-20 padding-top-bottom-20" ng-bind-html="'all-terms-text' | translate">
+          </div>
+        </div>
+
+        <!--TERMS AND CONDITIONS CHECK BOX-->
+        <div class="margin-top-bottom-4">
+        <div class="row" >
+          <div class="col col-10 col-offset-10">
+            <div ng-class="{'image-size-1 checked-image margin-top-2-07': FSLang.agreeTerms==true, 'image-size-1 unchecked-image margin-top-2-07': FSLang.agreeTerms==false}"
+               ng-click="FSLang.ChangeAgreeStatus(); FSLang.agreeTerms==true && modal.hide()"></div>
+          </div>
+          <div class="col col-70">
+            <span class="application-text-color-skyblue" translate>{{FSLang.agreeText}}</span>
+          </div>
+          <div class="col col-10"></div>
+        </div>
+        </div>
+
+      </ion-content>
+    </div>
+
+</ion-view>
+
+
+
+

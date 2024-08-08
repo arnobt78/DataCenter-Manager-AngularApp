@@ -1,0 +1,7 @@
+
+<ion-list>
+  <ion-item ng-repeat="datacenter in allStorageCtrl.datacenters">
+  <!-- <ion-item ng-repeat="snapshot in singleStorageCtrl.snapshotList.items | filter: { properties: { name: singleStorageCtrl.volumeName }}"> -->
+    <div class="application-text-color-gray" ng-click="allStorageCtrl.CreateNewVolume(datacenter.id)"> {{datacenter.properties.name}}</div>
+  </ion-item>
+</ion-list>

@@ -1,0 +1,105 @@
+<ion-view>
+ <!-- view-title="{{ 'datacenter-title-text' | translate }}" -->
+<ion-nav-title ng-click="TappingForRestartApp()">{{ 'datacenter-title-text' | translate }}</ion-nav-title>
+
+  <ion-nav-buttons side="right">
+    <div class="button button-filter button-icon icon padding-left-right-0" ng-click="datacenterCtrl.popover.show($event)">
+        <div class="filter-image image-size-1-50 margin-right-5 filter-position" ></div>
+    </div>
+  </ion-nav-buttons>
+  
+  <ion-content class="application-background-color">
+    <div class="margin-top-25"></div>
+
+    <ion-list>
+      <div ng-repeat="datacenter in datacenterCtrl.filteredDatacenter = (datacenterCtrl.datacenters | filter: datacenterCtrl.filterByLocation | filter: { properties: { name: datacenterCtrl.searchTextofDatacentersFilter } } | orderBy: 'properties.name')">
+
+        <ion-item class="custom-list-item-datacenter margin-bottom-25 box-shadow">
+          <div class="row list-bar">
+            <div class="col center font-size">{{ datacenter.properties.name }}</div>
+          </div>
+
+          <div class="row datacenter-properties" ng-click="datacenterCtrl.EnterDatacenter(datacenter.id, datacenter.properties.name)">
+            <div class="col col-50">
+              <div class="row">
+                <div class="col col-40">
+                  <div class="germanflag-image image-size-2-50 right" ng-if=" datacenter.properties.location == 'Karlsruhe' || datacenter.properties.location == 'Frankfurt'"> </div>
+                  <div class="usaflag-image image-size-2-50 right" ng-if="datacenter.properties.location == 'Las Vegas'"> </div>
+                </div>
+                <div class="col col-60">
+                  <div class="application-text-color-gray left margin-top-10">{{ datacenter.properties.location }}</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-40">
+              <div class="row">
+                <div class="col">
+                  <div class="version-image image-size-2-50 right"> </div>
+                </div>
+                <div class="col">
+                  <div class="application-text-color-gray margin-top-10 ">{{ datacenter.properties.version }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="margin-left-20 margin-right-20">
+            <div ng-click="datacenterCtrl.toggleGroup(datacenter)"  ng-class="datacenterCtrl.isGroupShown(datacenter) ? 'image-size-1-50 minus-icon right' : 'image-size-1-50 plus-icon right'"></div>
+            <div class="row row-no-padding application-theme-color-lightblue" ng-show="datacenterCtrl.isGroupShown(datacenter)">
+              <div class="col">
+                <div class="row">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col col-50">
+                        <div class="image-size-2 server-image right"></div>
+                      </div>
+                      <div class="col col-50  application-text-color-gray margin-top-10">{{datacenter.numberOfServers}}</div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="row">
+                      <div class="col col-50">
+                        <div class="image-size-2 storage-image right"></div>
+                      </div>
+                      <div class="col col-50 application-text-color-gray margin-top-10">{{datacenter.numberOfStorages}}</div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="row">
+                      <div class="col col-50">
+                        <div class="image-size-2 core-image right"></div>
+                      </div>
+                      <div class="col col-50  application-text-color-gray margin-top-10">{{datacenter.numberOfCores}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row datacenter-properties-info">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col col-50">
+                        <div class="image-size-2 memory-image right"></div>
+                      </div>
+                      <div class="col col-50 application-text-color-gray margin-top-10">{{datacenter.totalRam}} MB</div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="row">
+                      <div class="col col-50">
+                        <div class="image-size-2 storage-size-datacenter-image right"></div>
+                      </div>
+                      <div class="col col-50 application-text-color-gray margin-top-10">{{datacenter.totalVolumeSize}} GB</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="height-1"></div>
+
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

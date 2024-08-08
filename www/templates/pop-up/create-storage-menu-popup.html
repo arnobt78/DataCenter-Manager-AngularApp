@@ -1,0 +1,26 @@
+<form>
+  <div class="list create-stroge-info-list">
+
+    <label class="item item-input storage-name">
+      <input type="text" placeholder="{{ 'volume-name-text' | translate }}" ng-model="allStorageCtrl.data.storageName">
+    </label>
+
+    <label class="item item-input item-input-username">
+      <input type="text" placeholder="{{ 'size-text' | translate }}" ng-model="allStorageCtrl.data.storageSize" only-digits>
+    </label>
+
+
+    <label class="item item-input item-select licenceType-item">
+      <div class="input-label" translate>
+        licence-text
+      </div>
+      <select ng-model="allStorageCtrl.data.storageLicenceType">
+        <option ng-selected="true" translate>os-linux</option>
+        <option translate>os-windows</option>
+        <option translate>os-unknown</option>
+        <option translate>os-other</option>
+      </select>
+    </label>
+
+  </div>
+</form>

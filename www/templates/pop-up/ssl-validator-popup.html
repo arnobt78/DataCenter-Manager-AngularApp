@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="center" translate><b>ssl-validator-popup-message-text</b></div>
+</div>
+
+<div class="row">
+  <div class="center" translate><b>ssl-validator-popup-allowed-ssl-text</b></div>
+</div>
+
+<ion-list>
+  <ion-item ng-repeat="allowedFingerprint in allowedFingerprints">
+    <div class="row word-wraps"> {{allowedFingerprint.toString()}}</div>
+  </ion-item>
+</ion-list>
+
+<div class="row">
+  <div class="center" translate>ssl-validator-popup-server-ssl-text</div>
+</div>
+
+<ion-list>
+  <ion-item>
+    <div class="row word-wraps"> {{serverCertFingerprints[0].toString()}}</div>
+  </ion-item>
+</ion-list>
+
+
+

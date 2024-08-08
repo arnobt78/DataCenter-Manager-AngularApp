@@ -1,0 +1,7 @@
+
+<ion-list>
+  <ion-item ng-repeat="server in singleStorageCtrl.servers">
+  <!-- <ion-item ng-repeat="snapshot in singleStorageCtrl.snapshotList.items | filter: { properties: { name: singleStorageCtrl.volumeName }}"> -->
+    <div class="application-text-color-gray" ng-click="singleStorageCtrl.ShowServerActionsPopup(server.id)"> {{server.properties.name}}</div>
+  </ion-item>
+</ion-list>
