@@ -1,5 +1,5 @@
 
-# DataCenter-Manager
+## DataCenter-Manager
 
 ● Designed the Data Center as remote access like creating server, storage, taking snapshots or retrieving the snapshots of HDD, connecting/ disconnecting to server or data center, turning on/off the server.
 
@@ -7,6 +7,6 @@
 
 ● Created a secured line Proxy Secured Server Connection.
 
-# Keywords
+## Keywords
 
 Using Ionic Cordova AngularJS, HTML, CSS, JSON
